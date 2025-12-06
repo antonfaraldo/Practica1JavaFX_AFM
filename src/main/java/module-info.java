@@ -2,6 +2,7 @@ module com.example.practica1javafx_afm {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires java.sql;
 
 
     opens com.example.practica1javafx_afm to javafx.fxml;
