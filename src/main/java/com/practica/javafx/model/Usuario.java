@@ -1,6 +1,7 @@
 package com.practica.javafx.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Usuario {
     private int usuarioId;
@@ -10,12 +11,13 @@ public class Usuario {
     private LocalDate fechaNacimiento;
     private String email;
     private String password;
+    private List<Cantante> cantantesFavoritos;
 
     // Constructor vacio
     public Usuario() {
 
     }
-    public Usuario(int usuario_id, String nombre, String apellido,  String nickname, LocalDate fechaNacimiento, String email, String password) {
+    public Usuario(int usuarioId, String nombre, String apellido,  String nickname, LocalDate fechaNacimiento, String email, String password) {
         this.usuarioId = usuarioId;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,5 +84,13 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" + "usuario_id=" + usuarioId  + ", nombre=" + nombre + ", apellido=" + apellido + ", nickname=" + nickname + "fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", password=" + password + '}';
+    }
+
+    public List<Cantante> getCantantesFavoritos() {
+        return cantantesFavoritos;
+    }
+
+    public void setCantantesFavoritos(List<Cantante> cantantesFavoritos) {
+        this.cantantesFavoritos = cantantesFavoritos;
     }
 }

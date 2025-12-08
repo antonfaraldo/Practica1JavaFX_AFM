@@ -52,8 +52,8 @@ public class Cantante {
         return nombreArtistico;
     }
 
-    public void setNonmbreArtistico(String nonmbreArtistico) {
-        this.nombreArtistico = nonmbreArtistico;
+    public void setNombreArtistico(String nombreArtistico) {
+        this.nombreArtistico = nombreArtistico;
     }
 
     public LocalDate getFechaNacimiento() {

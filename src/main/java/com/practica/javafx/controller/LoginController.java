@@ -8,6 +8,7 @@ import com.practica.javafx.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public class LoginController {
+public class LoginController implements Initializable {
     @FXML
     private TextField usernameField;
     @FXML
@@ -44,7 +45,7 @@ public class LoginController {
             if (usuario != null) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios-view.fxml"));
-                    Parent root = loader.load();
+                    Parent root = fxmlLoader.load();
 
                     UsuariosController usuariosController = fxmlLoader.getController();
                     usuariosController.setUsuariologueado(usuario);
@@ -53,18 +54,19 @@ public class LoginController {
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
-                }else{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error de Acceso");
-                    alert.setHeaderText("Credenciales incorrectas");
-                    alert.setContentText("Por favor, verifica tu usuario y contraseña.");
-                    alert.showAndWait();
+                } catch (IOException e){
+                    showAlert("Error de carga", "No se pudo cargar la vista principal");
+                    e.printStackTrace();
                 }
+            } else {
+                showAlert("Error", "No cargo los datos completos del usuario");
             }
+        } else {
+            showAlert("Error de Acceso", "Credenciales no validos");
         }
     }
     @Override
-    public void initialice(java.net.URL url, java.util.ResourceBundle resourceBundle) {
+    public void initialize(java.net.URL url, java.util.ResourceBundle resourceBundle) {
         System.out.println("La vista de login está lista. Poniendo el foco en el campo de usuario.");
         Platform.runLater(() -> usernameField.requestFocus());
     }
