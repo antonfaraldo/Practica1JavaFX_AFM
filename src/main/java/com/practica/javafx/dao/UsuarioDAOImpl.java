@@ -40,7 +40,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     usuario = new Usuario();
-                    usuario.setUsuario_id(rs.getInt("usuario_id"));
+                    usuario.setUsuarioId(rs.getInt("usuario_id"));
                     usuario.setNombre(rs.getString("nombre"));
                     usuario.setApellido(rs.getString("apellido"));
                     usuario.setNickname(rs.getString("nickname"));

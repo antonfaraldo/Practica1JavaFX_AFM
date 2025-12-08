@@ -7,7 +7,7 @@ public class Cantante {
     private int id;
     private String nombre;
     private String apellido;
-    private String nonmbreArtistico;
+    private String nombreArtistico;
     private LocalDate fechaNacimiento;
     private String generoMusical;
 
@@ -15,11 +15,11 @@ public class Cantante {
     public Cantante() {
 
     }
-    public Cantante(int id, String nombre,  String apellido, String nonmbreArtistico, LocalDate fechaNacimiento, String generoMusical) {
+    public Cantante(int id, String nombre,  String apellido, String nombreArtistico, LocalDate fechaNacimiento, String generoMusical) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.nonmbreArtistico = nonmbreArtistico;
+        this.nombreArtistico = nombreArtistico;
         this.fechaNacimiento = fechaNacimiento;
         this.generoMusical = generoMusical;
     }
@@ -48,12 +48,12 @@ public class Cantante {
         this.apellido = apellido;
     }
 
-    public String getNonmbreArtistico() {
-        return nonmbreArtistico;
+    public String getNombreArtistico() {
+        return nombreArtistico;
     }
 
     public void setNonmbreArtistico(String nonmbreArtistico) {
-        this.nonmbreArtistico = nonmbreArtistico;
+        this.nombreArtistico = nonmbreArtistico;
     }
 
     public LocalDate getFechaNacimiento() {

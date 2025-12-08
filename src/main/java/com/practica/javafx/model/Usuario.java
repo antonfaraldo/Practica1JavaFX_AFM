@@ -3,7 +3,7 @@ package com.practica.javafx.model;
 import java.time.LocalDate;
 
 public class Usuario {
-    private int usuario_id;
+    private int usuarioId;
     private String nombre;
     private String apellido;
     private String nickname;
@@ -16,7 +16,7 @@ public class Usuario {
 
     }
     public Usuario(int usuario_id, String nombre, String apellido,  String nickname, LocalDate fechaNacimiento, String email, String password) {
-        this.usuario_id = usuario_id;
+        this.usuarioId = usuarioId;
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname = nickname;
@@ -24,11 +24,11 @@ public class Usuario {
         this.email = email;
         this.password = password;
     }
-    public int getUsuario_id() {
-        return usuario_id;
+    public int getUsuarioId() {
+        return usuarioId;
     }
-    public void setUsuario_id(int usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getNombre() {
@@ -81,6 +81,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "usuario_id=" + usuario_id  + ", nombre=" + nombre + ", apellido=" + apellido + ", nickname=" + nickname + "fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", password=" + password + '}';
+        return "Usuario{" + "usuario_id=" + usuarioId  + ", nombre=" + nombre + ", apellido=" + apellido + ", nickname=" + nickname + "fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", password=" + password + '}';
     }
 }
