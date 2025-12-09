@@ -12,6 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
 <BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.practica.javafx.controller.CancionesController">
     <top>
         <VBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
@@ -69,7 +72,18 @@
                     <Button fx:id="btnCancelar" onAction="#handleCancelar" text="Cancelar" />
                 </HBox>
                 <VBox spacing="5.0">
-                    <Label text="Opciones de Publicación (Futura Tarea):" />
+                    <Label text="Opciones de Publicación: " style="-fx-font-weight: bold; -fx-padding: 5 0 0 0;"/>
+                    <CheckBox fx:id="cbDisponibleStreaming" text="Disponible en Plataformas Streaming" />
+
+                    <Label text="Clasificación de Madurez:" style="-fx-padding: 5 0 0 0;" />
+                    <HBox spacing="10">
+                        <RadioButton fx:id="rbAptoTodos" text="Apto para Todos" />
+                        <RadioButton fx:id="rbAptoAdultos" text="Contenido Explícito" />
+                    </HBox>
+
+                    <Label text="Nivel de Popularidad (1-10):" style="-fx-padding: 5 0 0 0;" />
+                    <Slider fx:id="sliderPopularidad" min="1" max="10" majorTickUnit="1"
+                            minorTickCount="0" showTickLabels="true" snapToTicks="true"/>
                 </VBox>
             </VBox>
         </HBox>

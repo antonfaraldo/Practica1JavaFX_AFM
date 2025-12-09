@@ -20,6 +20,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,6 +42,13 @@ public class CancionesController implements Initializable {
     @FXML private TextField tfTitulo;
     @FXML private TextField tfDuracion;
     @FXML private TextField tfAnho;
+
+    @FXML private CheckBox cbDisponibleStreaming;
+    @FXML private RadioButton rbAptoTodos;
+    @FXML private RadioButton rbAptoAdultos;
+    @FXML private Slider sliderPopularidad;
+
+    private ToggleGroup clasificacionGroup;
 
     private CancionDAO cancionDAO;
     private ObservableList<Cancion> listaCanciones;
@@ -60,6 +71,14 @@ public class CancionesController implements Initializable {
 
         // Configurar dato calculado (duracion en m:s)
         colDuracionMinutos.setCellValueFactory(new PropertyValueFactory<>("duracionFormateada"));
+
+        clasificacionGroup = new ToggleGroup();
+        rbAptoTodos.setToggleGroup(clasificacionGroup);
+        rbAptoAdultos.setToggleGroup(clasificacionGroup);
+
+        rbAptoTodos.setSelected(true); // por defecto es apto para todos
+        sliderPopularidad.setValue(5.0);
+
         limpiarFormulario();
         configurarListenersTabla();
         mostrarDatosIniciales();
@@ -80,6 +99,17 @@ public class CancionesController implements Initializable {
         tfTitulo.clear();
         tfDuracion.clear();
         tfAnho.clear();
+
+        if (cbDisponibleStreaming != null) {
+            cbDisponibleStreaming.setSelected(false);
+        }
+        if (sliderPopularidad != null) {
+            sliderPopularidad.setValue(1.0);
+        }
+        if (rbAptoTodos != null) {
+            rbAptoTodos.setSelected(true);
+        }
+
         cancionEnEdicion = null;
     }
 
