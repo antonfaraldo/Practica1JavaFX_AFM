@@ -11,5 +11,5 @@ public interface CantanteDAO {
 
     List<Cantante> getAllCantantes();
     Cantante getCantanteById(int id);
-    List<Cantante> buscarJugadorPorNombreOApodo(String termino);
+    List<Cantante> buscarCantantePorNombreOApodo(String termino);
 }

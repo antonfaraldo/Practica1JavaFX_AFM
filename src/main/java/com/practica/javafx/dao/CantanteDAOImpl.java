@@ -11,7 +11,7 @@ public class CantanteDAOImpl implements CantanteDAO {
 
     @Override
     public void addCantante(Cantante cantante) {
-        String sql = "INSERT INTO cantantes (nombre, apellido, nombre-artistico, fecha_nacimiento, genero_musical) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cantantes (nombre, apellido, nombre_artistico, fecha_nacimiento, genero_musical) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -73,7 +73,7 @@ public class CantanteDAOImpl implements CantanteDAO {
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
-                        rs.getString("nombre-artistico"),
+                        rs.getString("nombre_artistico"),
                         rs.getDate("fecha_nacimiento").toLocalDate(),
                         rs.getString("genero_musical")
                 );
@@ -94,15 +94,24 @@ public class CantanteDAOImpl implements CantanteDAO {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    // Acabar esto
+                    return new Cantante(
+                            rs.getInt("id"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("nombre_artistico"),
+                            rs.getDate("fecha_nacimiento").toLocalDate(),
+                            rs.getString("genero_musical")
+                    );
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     @Override
-    public List<Cantante> buscarJugadorPorNombreOApodo(String termino) {
+    public List<Cantante> buscarCantantePorNombreOApodo(String termino) {
         List<Cantante> cantantes = new ArrayList<>();
         String sql = "SELECT * FROM cantantes WHERE nombre LIKE ? OR LOWER(nombre_artistico) LIKE ?";
 
@@ -125,10 +134,10 @@ public class CantanteDAOImpl implements CantanteDAO {
                     );
                     cantantes.add(cantante);
                 }
-            } catch (SQLException e) {
-                System.err.println("Error al buscar jugadores: " + e.getMessage());
-                e.printStackTrace();
             }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar cantantes: " + e.getMessage());
+            e.printStackTrace();
         }
         return cantantes;
     }

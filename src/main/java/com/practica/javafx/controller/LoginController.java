@@ -1,8 +1,12 @@
 package com.practica.javafx.controller;
 
+import com.practica.javafx.model.Cancion;
 import com.practica.javafx.model.Usuario;
 import com.practica.javafx.dao.UsuarioDAO;
 import com.practica.javafx.dao.UsuarioDAOImpl;
+import com.practica.javafx.model.Cantante;
+import com.practica.javafx.dao.FavoritoDAO;
+import com.practica.javafx.dao.FavoritoDAOImpl;
 import com.practica.javafx.Main;
 
 import javafx.application.Platform;
@@ -20,6 +24,8 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.ResourceBundle;
+import java.util.List;
 
 public class LoginController implements Initializable {
     @FXML
@@ -30,6 +36,7 @@ public class LoginController implements Initializable {
     private Button loginButton;
 
     private UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+    private FavoritoDAO favoritoDAO = new FavoritoDAOImpl();
     @FXML
     protected void onLoginButtonClick(ActionEvent event) throws IOException {
         String nickname = usernameField.getText();
@@ -43,6 +50,13 @@ public class LoginController implements Initializable {
             Usuario usuario = usuarioDAO.getUsuarioPorNickname(nickname);
 
             if (usuario != null) {
+                try {
+                    List<Cantante> favoritos = favoritoDAO.getCantantesFavoritos(usuario.getUsuarioId());
+                    usuario.setCantantesFavoritos(favoritos);
+                } catch (Exception e) {
+                    showAlert("Error de BD", "No se pudieron cargar los cantantes favoritos");
+                    e.printStackTrace();
+                }
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios-view.fxml"));
                     Parent root = fxmlLoader.load();
