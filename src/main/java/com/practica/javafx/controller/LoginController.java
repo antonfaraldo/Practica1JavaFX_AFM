@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.List;
 
@@ -53,16 +54,12 @@ public class LoginController implements Initializable {
                 try {
                     List<Cantante> favoritos = favoritoDAO.getCantantesFavoritos(usuario.getUsuarioId());
                     usuario.setCantantesFavoritos(favoritos);
-                } catch (Exception e) {
-                    showAlert("Error de BD", "No se pudieron cargar los cantantes favoritos");
-                    e.printStackTrace();
-                }
-                try {
+
                     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios-view.fxml"));
                     Parent root = fxmlLoader.load();
 
                     UsuariosController usuariosController = fxmlLoader.getController();
-                    usuariosController.setUsuariologueado(usuario);
+                    usuariosController.setUsuarioLogueado(usuario);
 
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
@@ -70,6 +67,9 @@ public class LoginController implements Initializable {
                     stage.show();
                 } catch (IOException e){
                     showAlert("Error de carga", "No se pudo cargar la vista principal");
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    showAlert("ERROR", "Error al procesar los datos");
                     e.printStackTrace();
                 }
             } else {
