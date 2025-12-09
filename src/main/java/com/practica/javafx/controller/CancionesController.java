@@ -69,6 +69,18 @@ public class CancionesController implements Initializable {
         });
         limpiarFormulario();
         configurarListenersTabla();
+        mostrarDatosIniciales();
+    }
+
+    private void mostrarDatosIniciales() {
+        mostrarDatosCantante();
+        cargarCanciones();
+    }
+
+    private void mostrarDatosCantante() {
+        if (cantanteSeleccionado != null) {
+            lblNombreCantante.setText(cantanteSeleccionado.getNombreArtistico() + " (" + cantanteSeleccionado.getNombre() + ")");
+        }
     }
 
     private void limpiarFormulario() {
@@ -92,8 +104,9 @@ public class CancionesController implements Initializable {
     // Este metodo es llamado por CantantesController
     public void setCantanteSeleccionado(Cantante cantante) {
         this.cantanteSeleccionado = cantante;
-        if (cantanteSeleccionado != null) {
-            lblNombreCantante.setText(cantanteSeleccionado.getNombreArtistico() + " (" + cantanteSeleccionado.getNombre() + ")");
+
+        if (lblNombreCantante != null) {
+            mostrarDatosCantante();
             cargarCanciones();
         }
     }

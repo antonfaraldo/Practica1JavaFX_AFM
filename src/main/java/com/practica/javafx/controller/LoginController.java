@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
                     List<Cantante> favoritos = favoritoDAO.getCantantesFavoritos(usuario.getUsuarioId());
                     usuario.setCantantesFavoritos(favoritos);
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios-view.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vistas/usuarios-view.fxml"));
                     Parent root = fxmlLoader.load();
 
                     UsuariosController usuariosController = fxmlLoader.getController();
