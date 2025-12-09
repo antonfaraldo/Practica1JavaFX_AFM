@@ -71,4 +71,10 @@ public class Cantante {
     public void setGeneroMusical(String generoMusical) {
         this.generoMusical = generoMusical;
     }
+    public int getEdad() {
+        if (fechaNacimiento == null) {
+            return 0;
+        }
+        return java.time.Period.between(fechaNacimiento, java.time.LocalDate.now()).getYears();
+    }
 }

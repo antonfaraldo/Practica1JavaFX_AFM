@@ -55,15 +55,7 @@ public class CantantesController implements Initializable {
         colGenero.setCellValueFactory(new PropertyValueFactory<>("generoMusical"));
 
         // Configurar Dato Calculado (edad)
-        //Momentaneo
-        colEdadCalculada.setCellValueFactory(cellData -> {
-            Cantante cantante = cellData.getValue();
-            if (cantante.getFechaNacimiento() != null) {
-                int edad = Period.between(cantante.getFechaNacimiento(), LocalDate.now()).getYears();
-                return new javafx.beans.property.SimpleStringProperty(String.valueOf(edad));
-            }
-            return new javafx.beans.property.SimpleStringProperty("N/A");
-        });
+        colEdadCalculada.setCellValueFactory(new PropertyValueFactory<>("edad"));
         cargarCantantes();
     }
     private void cargarCantantes() {
@@ -104,7 +96,7 @@ public class CantantesController implements Initializable {
         Cantante seleccionado = tablaCantantes.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("com/vistas/canciones-view.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vistas/canciones-view.fxml"));
                 Parent root = fxmlLoader.load();
 
                 CancionesController cancionesController = fxmlLoader.getController();

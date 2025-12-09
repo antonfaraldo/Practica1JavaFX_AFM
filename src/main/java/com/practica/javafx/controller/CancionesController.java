@@ -59,14 +59,7 @@ public class CancionesController implements Initializable {
         colAnho.setCellValueFactory(new PropertyValueFactory<>("anhoLanzamiento"));
 
         // Configurar dato calculado (duracion en m:s)
-        colDuracionMinutos.setCellValueFactory(cellData -> {
-            Cancion cancion = cellData.getValue();
-            int segundos = cancion.getDuracionSegundos();
-            int minutos = segundos / 60;
-            int segundosRestantes = segundos % 60;
-            String formato = String.format("%02d:%02d", minutos, segundosRestantes);
-            return new javafx.beans.property.SimpleStringProperty(formato);
-        });
+        colDuracionMinutos.setCellValueFactory(new PropertyValueFactory<>("duracionFormateada"));
         limpiarFormulario();
         configurarListenersTabla();
         mostrarDatosIniciales();
@@ -148,7 +141,7 @@ public class CancionesController implements Initializable {
     }
     @FXML
     private void handleGuardar() {
-        if (cantanteSeleccionado != null) {
+        if (cantanteSeleccionado == null) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "No hay un cantante seleccionado.");
             return;
         }
@@ -214,7 +207,7 @@ public class CancionesController implements Initializable {
     @FXML
     private void handleVolver(javafx.event.ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cantante-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/vistas/cantante-view.fxml"));
             Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

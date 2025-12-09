@@ -69,4 +69,11 @@ public class Cancion {
     public void setCantante(Cantante cantante) {
         this.cantante = cantante;
     }
+    public String getDuracionFormateada() {
+        int segundosTotales = this.duracionSegundos;
+        int minutos = segundosTotales / 60;
+        int segundosRestantes = segundosTotales % 60;
+
+        return String.format("%02d:%02d", minutos, segundosRestantes); // Esto lo hace en formato M:ss como 2:07
+    }
 }
