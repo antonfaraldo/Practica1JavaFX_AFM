@@ -16,7 +16,7 @@ public class FavoritoDAOImpl implements FavoritoDAO {
         List<Cantante> favoritos = new ArrayList<>();
 
         String sql = "SELECT c.* FROM cantantes c " +
-                     "JOIN favoritos_cantantes fc ON c.id = fc.cantante_id" +
+                     "JOIN favoritos_cantantes fc ON c.id = fc.cantante_id " +
                         "WHERE fc.usuario_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

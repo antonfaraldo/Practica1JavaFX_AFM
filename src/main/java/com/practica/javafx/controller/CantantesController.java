@@ -96,7 +96,7 @@ public class CantantesController implements Initializable {
         Cantante seleccionado = tablaCantantes.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vistas/canciones-view.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com.practica.javafx.controller/canciones-view.fxml"));
                 Parent root = fxmlLoader.load();
 
                 CancionesController cancionesController = fxmlLoader.getController();

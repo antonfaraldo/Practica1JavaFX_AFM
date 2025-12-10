@@ -237,7 +237,7 @@ public class CancionesController implements Initializable {
     @FXML
     private void handleVolver(javafx.event.ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/vistas/cantante-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com.practica.javafx.controller/cantante-view.fxml"));
             Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

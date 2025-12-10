@@ -5,6 +5,7 @@ module com.example.practica1javafx_afm {
     requires java.desktop;
     requires java.sql;
     requires javafx.graphics;
+    requires org.mariadb.jdbc;
 
 
     exports com.practica.javafx;
