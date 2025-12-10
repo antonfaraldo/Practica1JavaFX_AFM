@@ -65,19 +65,25 @@ public class CantanteDAOImpl implements CantanteDAO {
         String sql = "SELECT * FROM cantantes";
 
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Cantante cantante = new Cantante(
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
-                        rs.getString("nombre_artistico"),
-                        rs.getDate("fecha_nacimiento").toLocalDate(),
-                        rs.getString("genero_musical")
-                );
+                try {
+                Cantante cantante = new Cantante();
+                cantante.setId(rs.getInt("id"));
+                cantante.setNombre(rs.getString("nombre"));
+                cantante.setApellido(rs.getString("apellido"));
+                cantante.setNombreArtistico(rs.getString("nombre_artistico"));
+
+                java.sql.Date sqlDate = rs.getDate("fecha_nacimiento");
+                if (sqlDate != null) {
+                    cantante.setFechaNacimiento(sqlDate.toLocalDate());
+                }
+                cantante.setGeneroMusical(rs.getString("genero_musical"));
                 cantantes.add(cantante);
+            } catch (Exception e) {
+                    System.err.println("Fila de Cantante fallida. Error: " + e.getMessage());}
             }
         } catch (SQLException e) {
             e.printStackTrace();

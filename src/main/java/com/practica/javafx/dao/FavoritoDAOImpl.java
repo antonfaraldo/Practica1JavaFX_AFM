@@ -26,15 +26,22 @@ public class FavoritoDAOImpl implements FavoritoDAO {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                try {
                 Cantante cantante = new Cantante();
                 cantante.setId(rs.getInt("id"));
                 cantante.setNombre(rs.getString("nombre"));
                 cantante.setApellido(rs.getString("apellido"));
                 cantante.setNombreArtistico(rs.getString("nombre_artistico"));
-                cantante.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                cantante.setGeneroMusical(rs.getString("genero_musical")
-                );
+
+                java.sql.Date sqlDate = rs.getDate("fecha_nacimiento");
+                if (sqlDate != null) {
+                    cantante.setFechaNacimiento(sqlDate.toLocalDate());
+                }
+                cantante.setGeneroMusical(rs.getString("genero_musical"));
                 favoritos.add(cantante);
+            } catch (Exception e) {
+                    System.err.println("Fila de Favorito fallida. Error: " + e.getMessage());
+                }
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener cantantes favoritos: " + e.getMessage());
