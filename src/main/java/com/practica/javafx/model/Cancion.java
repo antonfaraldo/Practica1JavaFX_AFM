@@ -74,6 +74,6 @@ public class Cancion {
         int minutos = segundosTotales / 60;
         int segundosRestantes = segundosTotales % 60;
 
-        return String.format("%02d:%02d", minutos, segundosRestantes); // Esto lo hace en formato M:ss como 2:07
+        return String.format("%d:%02d", minutos, segundosRestantes); // Esto lo hace en formato M:ss como 2:07
     }
 }
