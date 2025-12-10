@@ -15,7 +15,7 @@ public class Cantante {
     public Cantante() {
 
     }
-    public Cantante(int id, String nombre,  String apellido, String nombreArtistico, LocalDate fechaNacimiento, String generoMusical) {
+    public Cantante(int id, String nombre,  String apellido, String nombreArtistico, java.time.LocalDate fechaNacimiento, String generoMusical) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

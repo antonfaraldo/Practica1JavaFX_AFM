@@ -116,7 +116,18 @@ public class CantantesController implements Initializable {
     }
     @FXML
     private void handleVolver(javafx.event.ActionEvent event) {
-        // Para volver a la vista principal
+      try {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com.practica.javafx.controller/usuarios-view.fxml"));
+          Parent root = fxmlLoader.load();
+
+          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+          Scene scene = new Scene(root);
+          stage.setScene(scene);
+          stage.setTitle("Panel Principal de Usuario");
+          stage.show();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
     }
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alert = new Alert(tipo);

@@ -15,7 +15,8 @@ public class FavoritoDAOImpl implements FavoritoDAO {
     public List<Cantante> getCantantesFavoritos(int usuarioId) {
         List<Cantante> favoritos = new ArrayList<>();
 
-        String sql = "SELECT c.* FROM cantantes c " +
+        String sql = "SELECT c.id, c.nombre, c.apellido, c.nombre_artistico, c.fecha_nacimiento, c.genero_musical " +
+               " FROM cantantes c " +
                      "JOIN favoritos_cantantes fc ON c.id = fc.cantante_id " +
                         "WHERE fc.usuario_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -31,7 +32,8 @@ public class FavoritoDAOImpl implements FavoritoDAO {
                 cantante.setApellido(rs.getString("apellido"));
                 cantante.setNombreArtistico(rs.getString("nombre_artistico"));
                 cantante.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                cantante.setGeneroMusical(rs.getString("genero_musical"));
+                cantante.setGeneroMusical(rs.getString("genero_musical")
+                );
                 favoritos.add(cantante);
             }
         } catch (SQLException e) {
